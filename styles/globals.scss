@@ -1,0 +1,15 @@
+// Global CSS styles
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+// Global CSS variables
+:root {
+  --bg-color-1: #f1804f;
+  --text-color-1: #ffffff;
+}

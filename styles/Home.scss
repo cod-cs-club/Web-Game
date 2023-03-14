@@ -1,0 +1,22 @@
+// Home page styles
+#home {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg-color-1);
+
+  h1 {
+    margin: 0;
+    text-align: center;
+    color: white;
+    background: blue;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    gap: 10px;
+  }
+}

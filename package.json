@@ -1,5 +1,5 @@
 {
-  "name": "web-game-2",
+  "name": "web-game",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,7 +11,8 @@
   "dependencies": {
     "next": "13.2.3",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "sass": "^1.59.2"
   },
   "devDependencies": {
     "eslint": "8.35.0",
