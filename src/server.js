@@ -5,6 +5,7 @@ import next from 'next'
 import dotenv from 'dotenv'
 import { createServer } from 'http'
 import { parse } from 'url'
+import { Server } from 'socket.io'
 import 'colors'
 
 // Load .env file
@@ -37,5 +38,10 @@ app.prepare().then(async () => {
   server.listen(port, err => {
     if (err) throw err
     console.log(`Next.js web server listening on: http://${hostname}:${port}`.green)
+  })
+
+  // Create the web socket server
+  const io = new Server(server, {
+    cors: { origin: '*' }
   })
 })
