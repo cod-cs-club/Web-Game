@@ -5,3 +5,4 @@ export default function handler(req, res) {
   const games = getGames()
   res.status(200).json(games)
 }
+
