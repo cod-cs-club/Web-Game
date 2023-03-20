@@ -1,8 +1,8 @@
-import { createGame, getGames } from '/functions/game'
+import createGame from '/functions/server/CreateGame'
 
 export default function handler(req, res) {
-  createGame()
-  const games = getGames()
-  res.status(200).json(games)
+  const game = createGame()
+  res.redirect(`/game?id=${game.id}`)
+  // res.status(200).json(games)
 }
 
