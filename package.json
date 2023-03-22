@@ -4,9 +4,9 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "node src/server.js --experimental-modules",
+    "dev": "node src/server/main.js --experimental-modules",
     "build": "next build ./src/",
-    "start": "cross-env PROJECT_MODE=production node src/server.js --experimental-modules"
+    "start": "cross-env PROJECT_MODE=production node src/server/main.js --experimental-modules"
   },
   "dependencies": {
     "colors": "^1.4.0",

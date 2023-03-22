@@ -1,32 +1,31 @@
-// Creating a CUSTOM Next.js server, so we can use Next.js and
-// web socket server at the same time without splitting the code.
-
 import next from 'next'
-import dotenv from 'dotenv'
 import { createServer } from 'http'
 import { parse } from 'url'
-import { Server } from 'socket.io'
-import 'colors'
-
-// Load .env file
-dotenv.config()
-
-// Clean up console
-console.clear()
 
 // Next.js settings
 const dev = process.env.PROJECT_MODE != 'production'
 const hostname = process.env.WEB_HOST || 'localhost'
 const port = process.env.WEB_PORT || 3000
-const app = next({ dev, hostname, port, dir: './src/' })
-const handle = app.getRequestHandler()
+const dir = '././src/'
 
 // Create the Next.js server
-app.prepare().then(async () => {
+export default async function nextJSServer(gamesHandler) {
+  const app = next({ dev, hostname, port, dir })
+  const handle = app.getRequestHandler()
+  await app.prepare()
+
+  // Create the web server
   const server = createServer(async (req, res) => {
     try {
       const parsedUrl = parse(req.url, true)
-      handle(req, res, parsedUrl)
+      if (parsedUrl.pathname === '/api/test') {
+        console.log('test api!')
+        gamesHandler.createGame()
+        console.log(gamesHandler.games)
+        res.statusCode = 200
+        res.end('test api!')
+      }
+      else handle(req, res, parsedUrl)
     }
     catch (err) {
       console.error('Error occurred handling', req.url, err)
@@ -35,13 +34,11 @@ app.prepare().then(async () => {
     }
   })
   
+  // Start the Next.js server
   server.listen(port, err => {
     if (err) throw err
     console.log(`Next.js web server listening on: http://${hostname}:${port}`.green)
   })
 
-  // Create the web socket server
-  const io = new Server(server, {
-    cors: { origin: '*' }
-  })
-})
+  return server // Return Next.js server object
+}

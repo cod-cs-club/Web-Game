@@ -1,11 +1,30 @@
+import { useEffect, useState } from 'react'
+
+import io from 'socket.io-client'
+const socket = io()
+
 // Main game page
-export default function Game({ game }) {
+export default function Game() {
+  const [game, setGame] = useState(null)
+
+  useEffect(() => {
+    socket.on('game-data', game => {
+      setGame(game)
+    })
+  }, [])
+
   return (
     <div id="game">
       { game &&
         <>
           <h1>Game page</h1>
           <h2>ID: {game.id}</h2>
+          <h3>Players:</h3>
+          { game.players.map(player => {
+            return (
+              <h4>{player.name} ({player.id})</h4>
+            )
+          })}
         </>
       }
       { !game &&
