@@ -15,12 +15,12 @@ export default function Home() {
               <button>?</button>
             </div>
             
-            <div>
+            <div class="game-maker">
               <button onClick={() => setSection('Join-Game')}>Join Game</button>
               <button onClick={() => setSection('Create-Game')}>Create Game</button>
             </div>
 
-            <div>
+            <div class="game-joiner">
               <input type="text" placeholder="Enter Code" />
               <button onClick={() => setSection('Join-Game')}>Join Game</button>
               <button onClick={() => setSection('Create-Game')}>Create Game</button>
