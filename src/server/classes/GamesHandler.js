@@ -7,7 +7,7 @@ export default class GamesHandler {
   }
 
   createGame() {
-    const game = new Game(this.games)
+    const game = new Game()
     this.games.push(game)
   }
 

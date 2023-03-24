@@ -1,4 +1,3 @@
-import next from 'next'
 import dotenv from 'dotenv'
 import 'colors'
 

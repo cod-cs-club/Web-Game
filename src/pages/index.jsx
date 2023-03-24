@@ -2,19 +2,19 @@ import { useState } from 'react'
 
 // Home (index) page
 export default function Home() {
-  const [section, setSection] = useState(0)
+  const [section, setSection] = useState('Main-Menu')
 
   return (
     <div id="home">
       <h1>WEB GAME</h1>
       <main>
-        { section === 0 &&
+        { section === 'Main-Menu' &&
           <>
-            <button onClick={() => setSection(1)}>Join Game</button>
-            <button onClick={() => setSection(2)}>Create Game</button>
+            <button onClick={() => setSection('Join-Game')}>Join Game</button>
+            <button onClick={() => setSection('Create-Game')}>Create Game</button>
           </>
         }
-        { section == 1 &&
+        { section == 'Join-Game' &&
           <>
             <form>
               <label htmlFor="gameId">Join Game</label>
@@ -22,7 +22,7 @@ export default function Home() {
             </form>
           </>
         }
-        { section == 2 &&
+        { section == 'Create-Game' &&
           <>
             <h2>create game thing</h2>
           </>
