@@ -9,10 +9,24 @@ export default function Home() {
       <h1>WEB GAME</h1>
       <main>
         { section === 'Main-Menu' &&
+          
           <>
-            <button onClick={() => setSection('Join-Game')}>Join Game</button>
-            <button onClick={() => setSection('Create-Game')}>Create Game</button>
+            <div class="extra-help">
+              <button>?</button>
+            </div>
+            
+            <div>
+              <button onClick={() => setSection('Join-Game')}>Join Game</button>
+              <button onClick={() => setSection('Create-Game')}>Create Game</button>
+            </div>
+
+            <div>
+              <input type="text" placeholder="Enter Code" />
+              <button onClick={() => setSection('Join-Game')}>Join Game</button>
+              <button onClick={() => setSection('Create-Game')}>Create Game</button>
+            </div>
           </>
+
         }
         { section == 'Join-Game' &&
           <>
@@ -31,3 +45,7 @@ export default function Home() {
     </div>
   )
 }
+
+//<form>
+    //<button>help</button>
+//</form>
