@@ -4,12 +4,25 @@
   flex-direction: column;
   min-height: 100vh;
   background: var(--bg-color-1);
+  overflow: hidden;
+
+  #backButton {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 50px;
+    left: -50px;
+    transition: 0.8s ease-in-out;
+    
+    &.visible { left: 50px; }
+  }
 
   h1 {
     margin: 0;
     text-align: center;
     color: white;
-    background: blue;
+    background: #2a9d8f;
   }
 
   main {
@@ -20,22 +33,39 @@
     gap: 10px;
   }
 
-  .extra-help {
+  #scenes {
+    display: flex;
+    justify-content: center;
+    gap: 80%;
+    transform: translateX(0);
+    transition: 0.8s ease-in-out;
 
-
+    &.right { transform: translateX(-100%); }
+    &.left { transform: translateX(100%); }
   }
 
-  .game-joiner {
-    display:flex;
+  form {
+    display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 10px;                                          
+    max-width: 200px;
+    margin: 0 auto;
+    gap: 5px;
   }
 
   .game-maker {
     display:flex;
     flex-direction: column;
     align-items: center;
-    gap:10px
+    gap:10px;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 50px 40px;
+    border: 5px dashed black;
+  }
+
+  button {
+    padding: 5px 10px;
+    background-color: #f4a261;
+    border: none;
   }
 }

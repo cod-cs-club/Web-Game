@@ -18,13 +18,17 @@ export default async function nextJSServer(gamesHandler) {
   const server = createServer(async (req, res) => {
     try {
       const parsedUrl = parse(req.url, true)
-      if (parsedUrl.pathname === '/api/test') {
-        console.log('test api!')
-        gamesHandler.createGame()
-        console.log(gamesHandler.games)
+
+      // Custom API routes
+      if (parsedUrl.pathname === '/api/createGame') {
+        const { username } = res.body
+        const newGame = gamesHandler.createGame()
+        res.redirect(`/game?id=${newGame.id}`)
         res.statusCode = 200
         res.end('test api!')
       }
+
+      // Default Next.js routing behavior
       else handle(req, res, parsedUrl)
     }
     catch (err) {
