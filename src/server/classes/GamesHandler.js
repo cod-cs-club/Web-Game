@@ -12,10 +12,10 @@ export default class GamesHandler {
   }
 
   getGame(id) {
-    return this.games.find(game => game.id === id);
+    return this.games.find(game => game.id === id)
   }
 
   removeGame(id) {
-    this.games = this.games.filter(game => game.id !== id);
+    this.games = this.games.filter(game => game.id !== id)
   }
 }

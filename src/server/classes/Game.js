@@ -9,7 +9,7 @@ export default class Game {
   }
 }
 
-// Create a random 4 letter ID for the game
+// Create a random 4 letter ID
 function createRandomID() {
   let id = ''
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -18,7 +18,7 @@ function createRandomID() {
     id += possible.charAt(Math.floor(Math.random() * possible.length))
   }
 
-  // Check if the ID already exists
+  // If the ID already exists, create a new one
   if (gamesHandler.getGame(id)) {
     return createRandomID()
   }
