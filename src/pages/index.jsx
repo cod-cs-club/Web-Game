@@ -36,38 +36,6 @@ export default function Home() {
     <div id="home">
       <h1>WEB GAME</h1>
       <main>
-        {/* { section === 'Main-Menu' &&
-          
-          <>
-            <div className="extra-help">
-              <button>?</button>
-            </div>
-            
-            <div className="game-maker">
-              <button onClick={() => setSection('Join-Game')}>Join Game</button>
-              <button onClick={() => setSection('Create-Game')}>Create Game</button>
-            </div>
-          </>
-
-        }
-        { section == 'Join-Game' &&
-          <>
-            <form onSubmit={joinGame}>
-              <label htmlFor="game-username">Username</label>
-              <input type="text" id="game-username" value={username} onChange={(e) => setUsername(e.target.value)} />
-              <label htmlFor="game-code">Game Code</label>
-              <input type="text" id="game-code" value={gameCode} onChange={(e) => setGameCode(e.target.value)} />
-              <button type="submit">Join Game</button>
-            </form>
-          </>
-        }
-        { section == 'Create-Game' &&
-          <form onSubmit={createGame}>
-            <label htmlFor="game-username">Username</label>
-            <input type="text" id="game-username" value={username} onChange={(e) => setUsername(e.target.value)} />
-            <button type="submit">Create Game</button>
-          </form>
-        } */}
         <div id="scenes" className={section == 'Main-Menu' ? 'middle' : section == 'Join-Game' ? 'left' : 'right'}>
           <form onSubmit={joinGame}>
             <label htmlFor="game-username">Username</label>
@@ -98,7 +66,3 @@ export default function Home() {
     </div>
   )
 }
-
-//<form>
-    //<button>help</button>
-//</form>
