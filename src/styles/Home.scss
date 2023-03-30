@@ -6,6 +6,21 @@
   background: var(--bg-color-1);
   overflow: hidden;
 
+  button {
+    padding: 5px 10px;
+    white-space: nowrap;
+    color: white;
+    background-color: #990db9;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: 0.5s;
+
+    &:hover {
+      background-color: #630977;
+    }
+  }
+
   #backButton {
     border-radius: 50%;
     width: 50px;
@@ -34,20 +49,31 @@
   }
 
   #scenes {
-    display: flex;
-    justify-content: center;
-    gap: 80%;
     transform: translateX(0);
     transition: 0.8s ease-in-out;
 
     &.right { transform: translateX(-100%); }
     &.left { transform: translateX(100%); }
+    
+
+    .join-game-form {
+      position: absolute;
+      left: calc(-50% - 150px);
+      width: 300px;
+    }
+
+    .create-game-form {
+      position: absolute;
+      left: calc(150% - 150px);
+      width: 300px;
+      top: 0;
+    }
   }
 
   form {
     display: flex;
     flex-direction: column;
-    max-width: 200px;
+    width: 200px;
     margin: 0 auto;
     gap: 5px;
   }
@@ -56,16 +82,10 @@
     display:flex;
     flex-direction: column;
     align-items: center;
-    gap:10px;
+    gap: 10px;
     max-width: 300px;
     margin: 0 auto;
     padding: 50px 40px;
     border: 5px dashed black;
-  }
-
-  button {
-    padding: 5px 10px;
-    background-color: #f4a261;
-    border: none;
   }
 }

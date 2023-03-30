@@ -34,7 +34,7 @@ export default function Home() {
       <h1>WEB GAME</h1>
       <main>
         <div id="scenes" className={section == 'Main-Menu' ? 'middle' : section == 'Join-Game' ? 'left' : 'right'}>
-          <form onSubmit={joinGame}>
+          <form onSubmit={joinGame} className='join-game-form'>
             <label htmlFor="game-username">Username</label>
             <input type="text" id="game-username" value={username} onChange={(e) => setUsername(e.target.value)} />
             <label htmlFor="game-code">Game Code</label>
@@ -47,7 +47,7 @@ export default function Home() {
             <button onClick={() => setSection('Create-Game')}>Create Game</button>
           </div>
 
-          <form onSubmit={createGame}>
+          <form onSubmit={createGame} className='create-game-form'>
             <label htmlFor="game-username">Username</label>
             <input type="text" id="game-username" value={username} onChange={(e) => setUsername(e.target.value)} />
             <button type="submit">Create Game</button>
