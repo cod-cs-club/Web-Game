@@ -9,6 +9,7 @@ export default class GamesHandler {
   createGame() {
     const game = new Game()
     this.games.push(game)
+    return game
   }
 
   getGame(id) {

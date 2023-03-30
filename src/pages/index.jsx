@@ -20,12 +20,9 @@ export default function Home() {
   }
 
   // Create then join the game when you submit the create game form
-  async function createGame() {
-    const result = await fetch(`/api/createGame`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username })
-    })
+  async function createGame(event) {
+    event.preventDefault()
+    const result = await fetch(`/api/createGame?username=${username}`)
 
     const { error } = result.json()
     

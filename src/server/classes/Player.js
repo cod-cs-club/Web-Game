@@ -1,11 +1,19 @@
 // Each player for games
 export default class Player {
-  constructor(id, name, socket) {
-    this.id = id
-    this.name = name
-    this.socket = socket
+  constructor(username) {
+    this.username = username
+    this.socket = null
     this.avatar = null
     this.isHost = false
+    this.connected = false
+  }
+
+  setSocket(socket) {
+    this.socket = socket
+  }
+
+  setConnected(boolean) {
+    this.connected = boolean
   }
 
   setAvatar(avatar) {

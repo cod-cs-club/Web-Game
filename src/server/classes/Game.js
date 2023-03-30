@@ -1,4 +1,5 @@
 import gamesHandler from "../main.js"
+import Player from "./Player.js"
 
 // Each game is created with this class
 export default class Game {
@@ -6,6 +7,16 @@ export default class Game {
     this.id = createRandomID()
     this.players = []
     this.state = 0
+  }
+
+  addPlayer(username) {
+    const player = new Player(username)
+    this.players.push(player)
+    return player
+  }
+
+  getPlayer(username) {
+    return this.players.find(player => player.username === username)
   }
 }
 

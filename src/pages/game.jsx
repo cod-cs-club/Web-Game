@@ -1,13 +1,18 @@
 import { useEffect, useState } from 'react'
 
 import io from 'socket.io-client'
-const socket = io()
 
 // Main game page
-export default function Game() {
+export default function Game({ id, username }) {
   const [game, setGame] = useState(null)
-
+  
   useEffect(() => {
+    const socket = io()
+
+    socket.on('connect', () => {
+      socket.emit('join-game', { id, username })
+    })
+
     socket.on('game-data', game => {
       setGame(game)
     })
@@ -35,23 +40,9 @@ export default function Game() {
 }
 
 // Get the game based off the ?id= in the URL
-import getGame from '/functions/server/getGame'
 export function getServerSideProps(context) {
-  const game = getGame(context.query.id)
-  console.log(context.query)
-  console.log(game)
-  if (game) { // Game exists
-    return ({
-      props: {
-        game: game
-      }
-    })
-  }
-  else { // Game doesn't exist
-    return ({
-      props: {
-        game: null
-      }
-    })
-  }
+  const { id, username } = context.query
+  return ({
+    props: { id, username }
+  })
 }
