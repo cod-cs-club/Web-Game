@@ -11,11 +11,7 @@ export default async function socketServer(gamesHandler, nextServer) {
       const { id, username } = data
       const game = gamesHandler.getGame(id)
       const player = game.getPlayer(username)
-      player.setSocket(socket)
-      player.setConnected(true)
-      // socket.join(id)
-      console.log(game.players)
-      socket.emit('joined-game', id, username)
+      player.setSocket(socket, game)
     })
 
     socket.on('disconnect', () => {

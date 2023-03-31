@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 // Home (index) page
 export default function Home() {
@@ -6,27 +7,28 @@ export default function Home() {
   const [username, setUsername] = useState('')
   const [gameCode, setGameCode] = useState('')
 
-  // Join game when you submit the join game form
-  async function joinGame() {
-    const result = await fetch(`/api/joinGame`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, gameCode })
-    })
+  const router = useRouter()
 
-    const { error } = result.json()
+  // Join game when you submit the join game form
+  async function joinGame(event) {
+    event.preventDefault()
+    const result = await fetch(`/joinGame?id=${gameCode}&username=${username}`)
     
-    if (error) {} // do something later
+    if (result.url) router.push(result.url) // Redirect to the game page
+
+    // const { error } = result.json()
+    // if (error) {} // do something later
   }
 
   // Create then join the game when you submit the create game form
   async function createGame(event) {
     event.preventDefault()
-    const result = await fetch(`/api/createGame?username=${username}`)
-
-    const { error } = result.json()
+    const result = await fetch(`/createGame?username=${username}`)
     
-    if (error) {} // do something later
+    if (result.url) router.push(result.url) // Redirect to the game page
+
+    // const { error } = result.json()
+    // if (error) {} // do something later
   }
 
   return (

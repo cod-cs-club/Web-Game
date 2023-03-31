@@ -10,13 +10,34 @@ export default class Game {
   }
 
   addPlayer(username) {
-    const player = new Player(username)
+    const player = new Player(username, this.id)
     this.players.push(player)
     return player
   }
 
   getPlayer(username) {
     return this.players.find(player => player.username === username)
+  }
+
+  // Send current game state to all players
+  broadcastState() {
+    const data = {
+      id: this.id,
+      players: this.players.map(player => {
+        return {
+          username: player.username,
+          avatar: player.avatar,
+          isHost: player.isHost,
+          connected: player.connected
+        }
+      }),
+      state: this.state
+    }
+
+    // Send the game state to all player sockets
+    this.players.forEach(player => {
+      player.socket.emit('game-data', data)
+    })
   }
 }
 

@@ -13,8 +13,8 @@ export default function Game({ id, username }) {
       socket.emit('join-game', { id, username })
     })
 
-    socket.on('game-data', game => {
-      setGame(game)
+    socket.on('game-data', data => {
+      setGame(data)
     })
   }, [])
 
@@ -23,11 +23,15 @@ export default function Game({ id, username }) {
       { game &&
         <>
           <h1>Game page</h1>
-          <h2>ID: {game.id}</h2>
+          <h2>
+            ID: {game.id}<br />
+            You are: {username}<br />
+            Game State: {game.state}
+          </h2>
           <h3>Players:</h3>
           { game.players.map(player => {
             return (
-              <h4>{player.name} ({player.id})</h4>
+              <h4>{player.username} ({player.connected ? 'Connected' : 'Not connected'})</h4>
             )
           })}
         </>

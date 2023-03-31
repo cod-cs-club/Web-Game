@@ -20,7 +20,7 @@ export default async function nextJSServer(gamesHandler) {
       const parsedUrl = parse(req.url, true)
 
       // Custom API routes
-      if (parsedUrl.pathname === '/api/createGame') {
+      if (parsedUrl.pathname === '/createGame') {
         const username = parsedUrl.query.username
         const newGame = gamesHandler.createGame()
         newGame.addPlayer(username)
@@ -31,6 +31,16 @@ export default async function nextJSServer(gamesHandler) {
         // res.statusCode = 200
         // res.setHeader('Content-Type', 'application/json')
         // res.end(JSON.stringify({ username: username }))
+      }
+
+      else if (parsedUrl.pathname === '/joinGame') {
+        const username = parsedUrl.query.username
+        const id = parsedUrl.query.id
+        const game = gamesHandler.getGame(id)
+        game.addPlayer(username)
+        res.statusCode = 302
+        res.setHeader('Location', `/game?id=${id}&username=${username}`)
+        res.end()
       }
 
       // Default Next.js routing behavior
