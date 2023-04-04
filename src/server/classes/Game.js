@@ -6,12 +6,23 @@ export default class Game {
   constructor() {
     this.id = createRandomID()
     this.players = []
+    this.currentPlayers = []
     this.state = 0
+    this.checkHost = false //initialize a boolean for whether or not there is a host in the game
   }
 
   addPlayer(username) {
     const player = new Player(username, this.id)
     this.players.push(player)
+    this.currentPlayers.push(player)
+    for(let i=0; i < this.players.length; i++){  //iterates throuhgout the entire array, and checks to see if there is a host or not
+      if (this.players[i].isHost = true){
+        this.checkHost = true
+      }
+    }
+    if(this.checkHost = false){ //if there is no host, then this player is the host
+      player.setHost
+    }
     return player
   }
 
