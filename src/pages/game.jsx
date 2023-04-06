@@ -1,6 +1,9 @@
-import { useEffect, useState } from 'react'
+import LobbyPage from '/components/LobbyPage'
+import WritePromptPage from '/components/WritePromptPage'
+import DrawPromptPage from '/components/DrawPromptPage'
 
 import io from 'socket.io-client'
+import { useEffect, useState } from 'react'
 
 // Main game page
 export default function Game({ id, username }) {
@@ -20,22 +23,9 @@ export default function Game({ id, username }) {
 
   return (
     <div id="game">
-      { game &&
-        <>
-          <h1>Game page</h1>
-          <h2>
-            ID: {game.id}<br />
-            You are: {username}<br />
-            Game State: {game.state}
-          </h2>
-          <h3>Players:</h3>
-          { game.players.map(player => {
-            return (
-              <h4>{player.username} ({player.connected ? 'Connected' : 'Not connected'})</h4>
-            )
-          })}
-        </>
-      }
+      { game?.state == 0 && <LobbyPage game={game} /> }
+      { game?.state == 1 && <WritePromptPage game={game} /> }
+      { game?.state == 2 && <DrawPromptPage game={game} /> }
       { !game &&
         <h1>Game not found</h1>
       }
@@ -46,7 +36,5 @@ export default function Game({ id, username }) {
 // Get the game based off the ?id= in the URL
 export function getServerSideProps(context) {
   const { id, username } = context.query
-  return ({
-    props: { id, username }
-  })
+  return ({ props: { id, username } })
 }
