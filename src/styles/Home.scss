@@ -10,14 +10,14 @@
     padding: 5px 10px;
     white-space: nowrap;
     color: white;
-    background-color: #990db9;
+    background-color: #E0777D;
     border-radius: 5px;
     border: none;
     cursor: pointer;
     transition: 0.5s;
 
     &:hover {
-      background-color: #630977;
+      background-color: #8E3B46;
     }
   }
 
@@ -37,7 +37,14 @@
     margin: 0;
     text-align: center;
     color: white;
-    background: #2a9d8f;
+    background: #477890;
+  }
+
+  h3 {
+    margin: 0;
+    text-align: center;
+    color: white;
+    background: #477890
   }
 
   main {
@@ -117,6 +124,6 @@
     max-width: 300px;
     margin: 0 auto;
     padding: 50px 40px;
-    border: 5px dashed black;
+    border: 5px dashed #E0777D;
   }
 }
