@@ -41,7 +41,7 @@ export default function Home() {
             <input type="text" id="game-username" value={username} onChange={(e) => setUsername(e.target.value)} />
             <label htmlFor="game-code"><h2>Game Code</h2></label>
             <input type="text" id="game-code" value={gameCode} onChange={(e) => setGameCode(e.target.value)} />
-            <button type="submit"><h3>Join Game</h3></button>
+            <button type="submit"><h2>Join Game</h2></button>
           </form>
 
           <div className="game-maker">
@@ -50,9 +50,9 @@ export default function Home() {
           </div>
 
           <form onSubmit={createGame} className='create-game-form'>
-            <label htmlFor="game-username">Username</label>
+            <label htmlFor="game-username"><h2>Username</h2></label>
             <input type="text" id="game-username" value={username} onChange={(e) => setUsername(e.target.value)} />
-            <button type="submit">Create Game</button>
+            <button type="submit"><h2>Create Game</h2></button>
           </form>
         </div>
 
