@@ -10,8 +10,10 @@ export default function LobbyPage({ game }) {
       </h2>
       <h3>Players:</h3>
       { game.players.map(player => {
-        return (
+        return ( 
           <h4>
+            <div class="box"></div>
+            {/* Where the player profile drawing gets updated */}
             {player.username}
             ({player.connected ? 'Connected' : 'Not connected'})
             {player.isHost ? ' - HOST' : ''}
