@@ -16,13 +16,14 @@ export default class Game {
     this.players.push(player)
     this.currentPlayers.push(player)
     for(let i=0; i < this.players.length; i++){  //iterates throuhgout the entire array, and checks to see if there is a host or not
-      if (this.players[i].isHost = true){
+      if (this.players[i].isHost == true){
         this.checkHost = true
       }
     }
-    if(this.checkHost = false){ //if there is no host, then this player is the host
-      player.setHost
+    if(this.checkHost == false){ //if there is no host, then this player is the host
+      player.setHost()
     }
+    
     return player
   }
 
@@ -47,7 +48,10 @@ export default class Game {
 
     // Send the game state to all player sockets
     this.players.forEach(player => {
-      player.socket.emit('game-data', data)
+      console.log(this.currentPlayers)
+      if(player.socket){
+        player.socket.emit('game-data', data)
+      }
     })
   }
 }

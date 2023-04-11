@@ -17,7 +17,7 @@ export default class Player {
     socket.on('disconnect', () => {
       this.leave()
       game.broadcastState()
-      if(this.isHost = true){ //if leaving player is host, reassigns host to another player
+      if(this.isHost == true){ //if leaving player is host, reassigns host to another player
          chooseNewHost()
       }
     })
@@ -28,10 +28,11 @@ export default class Player {
   leave() {
     this.connected = false
     this.socket = null
+    this.isHost = false
     
     //take this player name off of the currentPlayers list
     for(let i = 0; i < this.game.currentPlayers.length; i++){
-      if(this.game.currentPlayers[i].equals(this)){ //iterates throughout the current player array, and removes 
+      if(this.game.currentPlayers[i].username.equals(this.username)){ //iterates throughout the current player array, and removes 
         currentPlayers.remove[i]
       }
     }
@@ -52,7 +53,12 @@ export default class Player {
   leaveGame() {}
 
   chooseNewHost(){
-    x = Math.floor(Math.random() * (game.currentPlayers.length + 1)) //added 1 to include last entry in array
-    game.currentPlayers[x].setHost()
+    //x = Math.floor(Math.random() * (game.currentPlayers.length + 1)) //added 1 to include last entry in array
+    this.Players(x => {
+      if(x.connected == true){
+        x.setHost();
+      }
+    })
+    game.broadcastState()
   }
 }
