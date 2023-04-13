@@ -17,18 +17,12 @@ export default class Player {
     socket.on('disconnect', () => {
       this.leave()
       game.broadcastState()
-      if(this.isHost == true){ //if leaving player is host, reassigns host to another player
-         chooseNewHost()
-      }
     })
-
-    game.broadcastState()
   }
 
   leave() {
     this.connected = false
     this.socket = null
-    this.isHost = false
     
     //take this player name off of the currentPlayers list
     for(let i = 0; i < this.game.currentPlayers.length; i++){
@@ -37,9 +31,11 @@ export default class Player {
       }
     }
 
-    if(this.isHost == true){
-      this.chooseNewHost()
-    }
+    if(this.isHost == true){ //if leaving player is host, reassigns host to another player
+      this.isHost = false
+      chooseNewHost()
+   }
+   //game.broadcastState()
   }
 
   setAvatar(avatar) {
