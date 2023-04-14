@@ -1,41 +1,36 @@
 // Each player for games
 export default class Player {
-  constructor(username, gameID) {
+  constructor(username, game) {
     this.username = username
+    this.game = game
     this.socket = null
     this.avatar = null
     this.isHost = false
-    this.connected = false
-    this.gameID = gameID
+    this.isConnected = false
   }
 
-  setSocket(socket, game) {
+  setSocket(socket) {
     this.socket = socket
-    this.connected = true
+    this.isConnected = true
 
     // Set the socket events
     socket.on('disconnect', () => {
       this.leave()
-      game.broadcastState()
+      this.game.broadcastState()
     })
+
+    this.game.broadcastState()
   }
 
   leave() {
-    this.connected = false
+    this.isConnected = false
     this.socket = null
     
-    //take this player name off of the currentPlayers list
-    for(let i = 0; i < this.game.currentPlayers.length; i++){
-      if(this.game.currentPlayers[i].username.equals(this.username)){ //iterates throughout the current player array, and removes 
-        currentPlayers.remove[i]
-      }
-    }
-
-    if(this.isHost == true){ //if leaving player is host, reassigns host to another player
+    // If the player who is leaving is the host, choose a new host
+    if (this.isHost == true) {
       this.isHost = false
-      chooseNewHost()
-   }
-   //game.broadcastState()
+      this.game.chooseNewHost()
+    }
   }
 
   setAvatar(avatar) {
@@ -44,17 +39,5 @@ export default class Player {
 
   setHost() {
     this.isHost = true
-  }
-
-  leaveGame() {}
-
-  chooseNewHost(){
-    //x = Math.floor(Math.random() * (game.currentPlayers.length + 1)) //added 1 to include last entry in array
-    this.Players(x => {
-      if(x.connected == true){
-        x.setHost();
-      }
-    })
-    game.broadcastState()
   }
 }

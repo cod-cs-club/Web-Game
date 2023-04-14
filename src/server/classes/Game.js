@@ -6,21 +6,15 @@ export default class Game {
   constructor() {
     this.id = createRandomID()
     this.players = []
-    this.currentPlayers = []
     this.state = 0
-    this.checkHost = false //initialize a boolean for whether or not there is a host in the game
   }
 
   addPlayer(username) {
-    const player = new Player(username, this.id)
+    const player = new Player(username, this)
     this.players.push(player)
-    this.currentPlayers.push(player)
-    for(let i=0; i < this.players.length; i++){  //iterates throuhgout the entire array, and checks to see if there is a host or not
-      if (this.players[i].isHost == true){
-        this.checkHost = true
-      }
-    }
-    if(this.checkHost == false){ //if there is no host, then this player is the host
+    
+    // If player if the first player, make them the host
+    if (this.players.length === 1) {
       player.setHost()
     }
     
@@ -33,6 +27,7 @@ export default class Game {
 
   // Send current game state to all players
   broadcastState() {
+    console.log('Broadcasting game state...')
     const data = {
       id: this.id,
       players: this.players.map(player => {
@@ -40,7 +35,7 @@ export default class Game {
           username: player.username,
           avatar: player.avatar,
           isHost: player.isHost,
-          connected: player.connected
+          isConnected: player.isConnected
         }
       }),
       state: this.state
@@ -48,11 +43,25 @@ export default class Game {
 
     // Send the game state to all player sockets
     this.players.forEach(player => {
-      console.log(this.currentPlayers)
-      if(player.socket){
+      if (player.socket) {
         player.socket.emit('game-data', data)
       }
     })
+  }
+
+  // Assign a random player as the host
+  chooseNewHost() {
+    const connectedPlayers = []
+    for (let i = 0; i < this.players.length; i++) {
+      if (this.players[i].isConnected == true) {
+        connectedPlayers.push(this.players[i])
+      }
+    }
+    const randomPlayer = connectedPlayers[Math.floor(Math.random() * connectedPlayers.length)]
+    if (randomPlayer) {
+      randomPlayer.setHost()
+      this.broadcastState()
+    }
   }
 }
 

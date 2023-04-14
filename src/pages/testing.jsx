@@ -18,10 +18,10 @@ export default function Testing({ state }) {
 const genericFakeGame = {
   id: 'ABCD',
   players: [
-    { username: 'Player 1', isHost: true, connected: true },
-    { username: 'Player 2', isHost: false, connected: true },
-    { username: 'Player 3', isHost: false, connected: true },
-    { username: 'Player 4', isHost: false, connected: true }
+    { username: 'Player 1', isHost: true, isConnected: true },
+    { username: 'Player 2', isHost: false, isConnected: true },
+    { username: 'Player 3', isHost: false, isConnected: true },
+    { username: 'Player 4', isHost: false, isConnected: true }
   ]
 }
 

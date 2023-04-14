@@ -15,7 +15,7 @@ export default function LobbyPage({ game }) {
             <div class="box"></div>
             {/* Where the player profile drawing gets updated */}
             {player.username}
-            ({player.connected ? 'Connected' : 'Not connected'})
+            ({player.isConnected ? 'Connected' : 'Not connected'})
             {player.isHost ? ' - HOST' : ''}
           </h4>
         )
