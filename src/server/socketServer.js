@@ -10,18 +10,14 @@ export default async function socketServer(gamesHandler, nextServer) {
     socket.on('join-game', data => {
       const { id, username } = data
       const game = gamesHandler.getGame(id)
-      const player = game.getPlayer(username)
-      player.setSocket(socket, game)
-    })
-
-    socket.on('disconnect', () => {
-      console.log('A user disconnected')
-    })
-
-    socket.on('test', () => {
-      console.log('test')
-      gamesHandler.createGame()
-      console.log(gamesHandler.games)
+      if (game) {
+        const player = game.getPlayer(username)
+        player.setSocket(socket)
+      }
+      else {
+        // Does nothing on frontend yet, todo.
+        socket.emit('join-game-error', 'Game not found')
+      }
     })
   })
 
