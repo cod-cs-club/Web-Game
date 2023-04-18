@@ -2,13 +2,19 @@
 export default function LobbyPage({ game }) {
   return (
     <div id="lobby-page">
-      <h1>Game page</h1>
+      
+      <h1>Game page
+      ID: {game.id}</h1>
+
       <h2>
-        ID: {game.id}<br />
         {/* You are: {username}<br /> */}
-        Game State: {game.state}
+        <p>Game State: {game.state}</p>
       </h2>
-      <h3>Players:</h3>
+      
+      <h3>
+        Players: 
+      </h3>
+
       { game.players.map(player => {
         return ( 
           <h4>
