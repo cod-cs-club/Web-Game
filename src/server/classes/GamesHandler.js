@@ -36,15 +36,13 @@ export default class GamesHandler {
       } 
     }
 
-    const legalCharacters = "abcdefghijklmnopqrstuvwxyz0123456789_"//.split("")
+    const legalCharacters = "abcdefghijklmnopqrstuvwxyz0123456789_".split("")
     let legalCharactersLength = legalCharacters.length
-
+a
     
     console.log(legalCharactersLength)
     
-    let fluffyQueen = username//.split("")
     let usernameLength = username.length
-    console.log(fluffyQueen)
     console.log(usernameLength)
     console.log(legalCharacters)
 
