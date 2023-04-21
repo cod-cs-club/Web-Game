@@ -38,7 +38,6 @@ export default class GamesHandler {
 
     const legalCharacters = "abcdefghijklmnopqrstuvwxyz0123456789_".split("")
     let legalCharactersLength = legalCharacters.length
-a
     
     console.log(legalCharactersLength)
     
