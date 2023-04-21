@@ -37,30 +37,24 @@ export default class GamesHandler {
     }
 
     const legalCharacters = "abcdefghijklmnopqrstuvwxyz0123456789_".split("")
-    let legalCharactersLength = legalCharacters.length
-    
-    console.log(legalCharactersLength)
-    
-    let usernameLength = username.length
-    console.log(usernameLength)
-    console.log(legalCharacters)
+    const usernameCharacters = username.split("")
+    const usernameLength = username.length
 
-    let failed = false;
-    
-    for  (let i = 0; i < usernameLength; i++)
-      if (!username.includes(legalCharacters))
-        return{
-          success: false,
-          error: "Special char"
-        }
+    let failed = false
+    for  (let i = 0; i < usernameLength; i++) {
+      if (!legalCharacters.includes(usernameCharacters[i])) {
+        failed = true
+      }
+    }
 
-      else{
-        return{
-          success: true,
-          error: null,
-        }
-        }
-    return{
+    if (failed == true) {
+      return {
+        success: false,
+        error: 'Your name contains illegal characters',
+      }
+    }
+
+    return {
       success: true,
       error: null,
     }
