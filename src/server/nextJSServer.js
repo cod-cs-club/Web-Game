@@ -22,15 +22,22 @@ export default async function nextJSServer(gamesHandler) {
       // Custom API routes
       if (parsedUrl.pathname === '/createGame') {
         const username = parsedUrl.query.username
-        const newGame = gamesHandler.createGame()
-        newGame.addPlayer(username)
-        res.statusCode = 302
-        res.setHeader('Location', `/game?id=${newGame.id}&username=${username}`)
-        res.end()
+        const userValid = gamesHandler.checkUsername(username) //username check function
+        console.log(userValid) 
+        if(userValid.success == true){
+          const newGame = gamesHandler.createGame() 
+          newGame.addPlayer(username)
+          res.statusCode = 302
+          res.setHeader('Location', `/game?id=${newGame.id}&username=${username}`)
+          res.end()
+        } else{
+          res.statusCode = 200
+          res.setHeader('Content-Type', 'application/json')
+          res.end(JSON.stringify(userValid))
+        }
+       
 
-        // res.statusCode = 200
-        // res.setHeader('Content-Type', 'application/json')
-        // res.end(JSON.stringify({ username: username }))
+        
       }
 
       else if (parsedUrl.pathname === '/joinGame') {

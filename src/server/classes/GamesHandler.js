@@ -29,14 +29,14 @@ export default class GamesHandler {
       }
     }
     else if(username.length > 10){
-      //username is longer than # characters
+      //username is longer than 10 characters
       return{
         success: false,
         error: 'Your name is longer than 10 characters',
       } 
     }
 
-    const legalCharacters = "abcdefghijklmnopqrstuvwxyz0123456789_".split("")
+    const legalCharacters = "abcdefghijklmnopqrstuvwxyz0123456789_ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
     const usernameCharacters = username.split("")
     const usernameLength = username.length
 

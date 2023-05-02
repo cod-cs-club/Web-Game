@@ -25,10 +25,15 @@ export default function Home() {
     event.preventDefault()
     const result = await fetch(`/createGame?username=${username}`)
     
-    if (result.url) router.push(result.url) // Redirect to the game page
-
-    // const { error } = result.json()
-    // if (error) {} // do something later
+    try{
+      const response = await result.json()
+      if(response.success == false){
+        alert(response.error)
+      } 
+    }
+    catch(e){
+      router.push(result.url) // redirect to the game page
+    }
   }
 
   return (
@@ -50,7 +55,7 @@ export default function Home() {
           </div>
 
           <form onSubmit={createGame} className='create-game-form'>
-            <label htmlFor="game-username"><h2>Username</h2></label>
+            <label htmlFor="game-username"><h2>Username</h2></label> 
             <input type="text" id="game-username" value={username} onChange={(e) => setUsername(e.target.value)} />
             <button type="submit"><h2>Create Game</h2></button>
           </form>
